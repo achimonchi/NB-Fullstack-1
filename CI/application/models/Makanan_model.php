@@ -6,4 +6,9 @@ class Makanan_model extends CI_Model
     {
         return $this->db->get('makanan')->result();
     }
+
+    function add_data($data)
+    {
+        return $this->db->insert('makanan', $data);
+    }
 }
