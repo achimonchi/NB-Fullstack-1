@@ -11,4 +11,16 @@ class Makanan_model extends CI_Model
     {
         return $this->db->insert('makanan', $data);
     }
+
+    function get_by_id($id)
+    {
+        $this->db->where("_id", $id);
+        return $this->db->get('makanan')->row();
+    }
+
+    function update_data($data, $id)
+    {
+        $this->db->where('_id', $id);
+        return $this->db->update('makanan', $data);
+    }
 }

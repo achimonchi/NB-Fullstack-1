@@ -29,6 +29,10 @@
                         <div class="sub-header">
                             <?= $food->mk_harga ?>
                         </div>
+                        <div class="float-right">
+                            <a href="<?= site_url('foods/detail/').$food->_id ?>" class="btn btn-success btn-sm">Ubah</a>
+                            <a href="#" class="btn btn-danger btn-sm">Hapus</a>
+                        </div>
                     </div>
                 </div>
             </div>
