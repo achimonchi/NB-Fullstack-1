@@ -82,4 +82,18 @@ class Foods extends CI_Controller
             header("location:".site_url('/foods'));
         }
     }
+
+    function delete($id="")
+    {
+        if($id !== ""){
+            $delete = $this->Makanan_model->delete_data($id);
+            if($delete){
+                header("location:".site_url('/foods'));
+            } else {
+                header("location:".site_url('/foods'));
+            }
+        } else {
+            header("location:".site_url('/foods'));
+        }
+    }
 }

@@ -23,4 +23,9 @@ class Makanan_model extends CI_Model
         $this->db->where('_id', $id);
         return $this->db->update('makanan', $data);
     }
+
+    function delete_data($id)
+    {
+        return $this->db->delete('makanan', array('_id' => $id));
+    }
 }

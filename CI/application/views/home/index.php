@@ -31,7 +31,7 @@
                         </div>
                         <div class="float-right">
                             <a href="<?= site_url('foods/detail/').$food->_id ?>" class="btn btn-success btn-sm">Ubah</a>
-                            <a href="#" class="btn btn-danger btn-sm">Hapus</a>
+                            <a href="<?= site_url('foods/delete/').$food->_id ?>" class="btn btn-danger btn-sm">Hapus</a>
                         </div>
                     </div>
                 </div>
