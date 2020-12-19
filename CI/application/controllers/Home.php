@@ -7,6 +7,10 @@ class Home extends CI_Controller
         parent::__construct();
         $this->load->model('Makanan_model');
         $this->load->model('Admin_model');
+
+        if(!empty($this->session->userdata('login'))){
+            header('location:'.site_url('foods'));
+        }
     }
 
 	public function index()
@@ -29,10 +33,15 @@ class Home extends CI_Controller
                 // lakukan verify password
                 $password = $this->input->post('password');
                 if(password_verify($password, $userPass)){
+                    // var_dump($user);
+                    // add session
+                    $this->session->set_userdata('login', $user);
                     header('location:'.site_url('foods'));
                 } else {
                     header('location:'.site_url('home'));
                 }
+            } else {
+                header('location:'.site_url('home'));
             }
         }
     }
@@ -47,10 +56,11 @@ class Home extends CI_Controller
     public function processSignUp()
     {
         if(!empty($this->input->post())){
+            $password = $this->input->post('password');
             $value = array(
                 "a_nama" => $this->input->post('nama'),
                 "a_username" => $this->input->post('username'),
-                "a_password" => password_hash($this->input->post('password'), PASSWORD_BCRYPT),
+                "a_password" => password_hash($password, PASSWORD_BCRYPT),
             );
 
             $insert = $this->Admin_model->add($value);
@@ -61,5 +71,11 @@ class Home extends CI_Controller
             }
         }
         
+    }
+
+    public function logout()
+    {
+        $this->session->unset_userdata("login");
+        header('location:'.site_url('home'));
     }
 }

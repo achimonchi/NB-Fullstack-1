@@ -6,6 +6,10 @@ class Foods extends CI_Controller
     {
         parent::__construct();
         $this->load->model('Makanan_model');
+
+        if(empty($this->session->userdata('login'))){
+            header('location:'.site_url('home'));
+        }
     }
 
 	public function index()
@@ -17,7 +21,7 @@ class Foods extends CI_Controller
 
 
         $this->load->view('templates/header', $data);
-        $this->load->view('home/index');
+        $this->load->view('foods/index');
         $this->load->view('templates/footer');  
     }
 
@@ -53,9 +57,11 @@ class Foods extends CI_Controller
 
             $insert = $this->Makanan_model->add_data($value);
             if($insert){
-                header("location:".site_url());
+                $this->session->set_flashdata('success', 'Tambah Makanan Berhasil !');
+                redirect(site_url('foods'));
             }else{
-                header("location:".site_url('/foods/add'));
+                $this->session->set_flashdata('error', 'Tambah Makanan Gagal !');
+                redirect(site_url('foods/add'));
             }
         } else {
             header("location:".site_url('/foods/add'));
@@ -88,12 +94,15 @@ class Foods extends CI_Controller
         if($id !== ""){
             $delete = $this->Makanan_model->delete_data($id);
             if($delete){
-                header("location:".site_url('/foods'));
+                $this->session->set_flashdata('success', 'Hapus Makanan Berhasil !');
+                redirect(site_url('foods'));
             } else {
-                header("location:".site_url('/foods'));
+                $this->session->set_flashdata('error', 'Hapus Makanan Gagal !');
+                redirect(site_url('foods'));
             }
         } else {
-            header("location:".site_url('/foods'));
+            $this->session->set_flashdata('error', 'Harap masukkan ID Makanan !');
+            redirect(site_url('foods'));
         }
     }
 }

@@ -1,7 +1,12 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-6">
-            <a href="<?= site_url() ?>" class="btn btn-dark btn-sm">Back</a>
+            <a href="<?= site_url('foods') ?>" class="btn btn-dark btn-sm">Back</a>
+            <?php if($this->session->flashdata('error')) : ?>
+                <div class="alert alert-danger" role="alert">
+                    <?= $this->session->flashdata('error') ?>
+                </div>
+            <?php endif ?>
             <h1>Form Add Foods</h1>
             <div class="row">
                 <div class="col-md-12">
