@@ -12,4 +12,9 @@ class Admin_model extends CI_Model
     {
         return $this->db->get_where('admin', array('a_username'=>$username))->row();
     }
+
+    function get_by_id($id)
+    {
+        return $this->db->get_where('admin', array('_id'=>$id))->row();
+    }
 }

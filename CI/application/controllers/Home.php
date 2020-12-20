@@ -61,6 +61,7 @@ class Home extends CI_Controller
                 "a_nama" => $this->input->post('nama'),
                 "a_username" => $this->input->post('username'),
                 "a_password" => password_hash($password, PASSWORD_BCRYPT),
+                "a_role"=>"kasir"
             );
 
             $insert = $this->Admin_model->add($value);

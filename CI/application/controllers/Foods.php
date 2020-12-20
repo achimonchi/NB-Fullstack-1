@@ -7,21 +7,26 @@ class Foods extends CI_Controller
         parent::__construct();
         $this->load->model('Makanan_model');
 
+        $this->load->model('Admin_model');
+
         if(empty($this->session->userdata('login'))){
             header('location:'.site_url('home'));
         }
+
+        $_id = $this->session->userdata('login')->_id;
+        $this->role = $this->Admin_model->get_by_id($_id)->a_role;
     }
 
 	public function index()
 	{
         $data = array(
             "foods" => $this->Makanan_model->get_all(),
-            "title" => "Data Makanan"
+            "title" => "Data Makanan",
+            "role" => $this->role
         );
 
-
         $this->load->view('templates/header', $data);
-        $this->load->view('foods/index');
+        $this->load->view('foods/index', $data);
         $this->load->view('templates/footer');  
     }
 
@@ -29,7 +34,8 @@ class Foods extends CI_Controller
     {
         $data = array(
             "food" => $this->Makanan_model->get_by_id($id),
-            "title" => "Detail Makanan"
+            "title" => "Detail Makanan",
+            "role" => $this->role
         );
 
         $this->load->view('templates/header', $data);

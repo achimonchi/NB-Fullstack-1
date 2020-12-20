@@ -6,7 +6,8 @@
                     <h1 class="display-4">Data Makanan</h1>
                     <p class="lead">Ini adalah table data makanan</p>
                     <?php
-                        if(check_role($this, 'admin')) :
+                        if(check_role($role, 'admin')) :
+                        // if(check_role($this, 'admin')) :
                     ?>
                         <a href="<?= site_url('/foods/add') ?>" class="btn btn-primary btn-sm">Tambah Makanan</a>
                     <?php
@@ -52,7 +53,7 @@
                             <?= $food->mk_harga ?>
                         </div>
                         <div class="float-right">
-                            <?php if(check_role($this, "admin")) : ?>
+                            <?php if(check_role($role, "admin")) : ?>
                                 <a href="<?= site_url('foods/detail/').$food->_id ?>" class="btn btn-success btn-sm">Ubah</a>
                                 <a href="<?= site_url('foods/delete/').$food->_id ?>" class="btn btn-danger btn-sm">Hapus</a>
                             <?php else : ?>

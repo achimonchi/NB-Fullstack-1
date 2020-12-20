@@ -21,7 +21,7 @@
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
           <a class="nav-link active" href="<?= site_url('foods') ?>">Foods <span class="sr-only">(current)</span></a>
-            <?php if(check_role($this, 'admin')) : ?>
+            <?php if(check_role($role, 'admin')) : ?>
               <a class="nav-link" href="<?= site_url('admin') ?>">Admin </a>
             <?php endif ?>
           
